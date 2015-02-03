@@ -1,0 +1,36 @@
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+public class FutureInvestment {
+	static double futureInvestmentValue;
+	static int investmentAmount;
+	static double annualInterestRate;
+	static int numberOfYears;
+	static double monthlyInvestmentRate;
+
+	public static void main(String[] args) {
+		Scanner scanValue = new Scanner(System.in);
+		System.out.println("This program will calculate your future investment Value!");
+		System.out.println("Please enter following details!");
+		System.out.println("Enter Investment Amount :");
+		investmentAmount = scanValue.nextInt();
+		System.out.println("Enter Annual Interest Rate :");
+		annualInterestRate = scanValue.nextDouble();
+		System.out.println("Enter Number of years:");
+		numberOfYears = scanValue.nextInt();
+		
+		// Calculate monthly Investment Rate on base of Annual Rate
+		DecimalFormat df = new DecimalFormat("#.000");
+		monthlyInvestmentRate = annualInterestRate / 1200;
+		System.out.println("Your Monthly Investment rate is :" + df.format(monthlyInvestmentRate) + "%");
+		//Logic of calculating futureInvestment
+		futureInvestmentValue = investmentAmount
+				* Math.pow((1 + monthlyInvestmentRate), (numberOfYears * 12));
+		//Number Format use to formate currency value 
+		NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+		System.out.println("Your Future Investment Value is = "
+				+ defaultFormat.format(futureInvestmentValue));
+
+	}
+}
